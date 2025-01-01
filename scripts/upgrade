@@ -33,7 +33,7 @@ ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config"
 ynh_script_progression "Building app... This may take quiete some time"
 
 pushd "$install_dir"
-	ynh_hide_warnings corepack enable && corepack install pnpm@latest-9
+	ynh_hide_warnings corepack enable && corepack install pnpm@latest
 	ynh_hide_warnings ynh_exec_as_app COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm install --frozen-lockfile
 	pnpm turbo prune deemix-webui
 	pnpm turbo build --filter=deemix-webui
