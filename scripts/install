@@ -32,13 +32,11 @@ ynh_config_add_nginx
 #=================================================
 # BUILD APP
 #=================================================
-
+ynh_script_progression "Building app... This may take quiete some time"
 
 pushd "$install_dir"
-	ynh_use_nodejs
-	corepack enable
-	corepack prepare pnpm@latest --activate
-	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm i
+	ynh_hide_warnings corepack enable && corepack prepare pnpm@latest --activate
+	ynh_hide_warnings ynh_exec_as_app COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm install --frozen-lockfile
 popd
 
 chown -R $app:$app "$install_dir"
