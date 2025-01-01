@@ -10,7 +10,7 @@ Group=__APP__
 WorkingDirectory=__INSTALL_DIR__/
 EnvironmentFile=__INSTALL_DIR__/.env
 Environment=NODE_ENV=production
-ExecStart=__NODEJS_DIR__/node pnpm dev
+ExecStart=__YNH_NPM__ dev
 StandardOutput=append:/var/log/__APP__/__APP__.log
 StandardError=inherit
 Restart=on-failure

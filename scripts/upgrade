@@ -32,11 +32,12 @@ ynh_setup_source --dest_dir="$install_dir" --full_replace --keep="config"
 #=================================================
 ynh_script_progression "Building app... This may take quiete some time"
 
-pushd $install_dir
-    ynh_hide_warnings corepack enable && corepack prepare pnpm@latest --activate
-    ynh_hide_warnings pnpm i
+pushd "$install_dir"
+	ynh_use_nodejs
+	corepack enable
+	corepack prepare pnpm@latest --activate
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm i
 popd
-
 
 chown -R $app:$app "$install_dir"
 

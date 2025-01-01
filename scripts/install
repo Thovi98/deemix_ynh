@@ -33,9 +33,12 @@ ynh_config_add_nginx
 # BUILD APP
 #=================================================
 
-pushd $install_dir
-    ynh_hide_warnings corepack enable && corepack prepare pnpm@latest --activate
-    ynh_hide_warnings pnpm i
+
+pushd "$install_dir"
+	ynh_use_nodejs
+	corepack enable
+	corepack prepare pnpm@latest --activate
+	ynh_exec_warn_less ynh_exec_as $app env $ynh_node_load_PATH pnpm i
 popd
 
 chown -R $app:$app "$install_dir"
