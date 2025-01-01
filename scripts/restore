@@ -67,7 +67,7 @@ yunohost service add $app --log="/var/log/$app/$app.log"
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service=$app --action="start"  --wait_until="Starting Overseerr version"
+ynh_systemctl --service=$app --action="start"  --wait_until=""
 
 #=================================================
 # RELOAD NGINX
